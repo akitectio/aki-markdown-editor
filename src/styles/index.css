@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Markdown Editor Styles */
+.markdown-editor {
+    @apply border border-gray-200 rounded-lg overflow-hidden;
+}
+
+.markdown-editor.dark {
+    @apply border-gray-700 bg-gray-800;
+}
+
+.markdown-toolbar {
+    @apply bg-gray-50 border-b border-gray-200 p-2;
+}
+
+.markdown-editor.dark .markdown-toolbar {
+    @apply bg-gray-800 border-gray-700;
+}
+
+.markdown-preview {
+    @apply bg-white;
+}
+
+.markdown-editor.dark .markdown-preview {
+    @apply bg-gray-900;
+}
+
+/* Textarea styles */
+.markdown-editor textarea {
+    @apply resize-none outline-none border-0 p-4 font-mono text-sm leading-relaxed;
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+}
+
+.markdown-editor.dark textarea {
+    @apply bg-gray-900 text-gray-100;
+}
+
+.markdown-editor textarea::placeholder {
+    @apply text-gray-400;
+}
+
+.markdown-editor.dark textarea::placeholder {
+    @apply text-gray-500;
+}
+
+/* Preview content styles */
+.markdown-preview .prose {
+    @apply max-w-none;
+}
+
+.markdown-editor.dark .markdown-preview .prose {
+    @apply text-gray-200;
+}
+
+.markdown-editor.dark .markdown-preview .prose h1,
+.markdown-editor.dark .markdown-preview .prose h2,
+.markdown-editor.dark .markdown-preview .prose h3,
+.markdown-editor.dark .markdown-preview .prose h4,
+.markdown-editor.dark .markdown-preview .prose h5,
+.markdown-editor.dark .markdown-preview .prose h6 {
+    @apply text-gray-100;
+}
+
+.markdown-editor.dark .markdown-preview .prose a {
+    @apply text-blue-400;
+}
+
+.markdown-editor.dark .markdown-preview .prose code {
+    @apply bg-gray-800 text-pink-300;
+}
+
+.markdown-editor.dark .markdown-preview .prose pre {
+    @apply bg-gray-800 text-gray-100;
+}
+
+.markdown-editor.dark .markdown-preview .prose blockquote {
+    @apply border-l-blue-400 bg-gray-800 text-gray-300;
+}
+
+/* Toolbar button styles */
+.markdown-toolbar button {
+    @apply transition-colors duration-200;
+}
+
+.markdown-toolbar button:hover {
+    @apply bg-gray-200;
+}
+
+.markdown-editor.dark .markdown-toolbar button:hover {
+    @apply bg-gray-700;
+}
+
+/* Scrollbar styles */
+.markdown-editor ::-webkit-scrollbar {
+    @apply w-2;
+}
+
+.markdown-editor ::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+}
+
+.markdown-editor.dark ::-webkit-scrollbar-track {
+    @apply bg-gray-800;
+}
+
+.markdown-editor ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded;
+}
+
+.markdown-editor.dark ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600;
+}
+
+.markdown-editor ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+}
+
+.markdown-editor.dark ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+}
+
+/* Focus states */
+.markdown-editor textarea:focus {
+    @apply ring-0 border-0 outline-none;
+}
+
+/* Line numbers (if enabled) */
+.markdown-editor .line-numbers {
+    @apply bg-gray-50 border-r border-gray-200 text-gray-400 text-right px-2 py-4 font-mono text-sm select-none;
+    min-width: 3rem;
+}
+
+.markdown-editor.dark .line-numbers {
+    @apply bg-gray-800 border-gray-700 text-gray-500;
+}
+
+/* Fullscreen styles */
+.markdown-editor.fullscreen {
+    @apply fixed inset-0 z-50;
+}
+
+/* Animation for transitions */
+.markdown-editor .tab-transition {
+    @apply transition-all duration-200 ease-in-out;
+}
+
+/* Loading states */
+.markdown-editor .saving-indicator {
+    @apply text-xs text-gray-500 animate-pulse;
+}
+
+.markdown-editor.dark .saving-indicator {
+    @apply text-gray-400;
+}
+
+/* Error states */
+.markdown-editor .error {
+    @apply border-red-300 bg-red-50;
+}
+
+.markdown-editor.dark .error {
+    @apply border-red-600 bg-red-900;
+}
+
+/* Success states */
+.markdown-editor .success {
+    @apply border-green-300 bg-green-50;
+}
+
+.markdown-editor.dark .success {
+    @apply border-green-600 bg-green-900;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .markdown-toolbar {
+        @apply px-2 py-1;
+    }
+
+    .markdown-toolbar button {
+        @apply px-2 py-1 text-xs;
+    }
+
+    .markdown-editor textarea {
+        @apply p-3 text-sm;
+    }
+}

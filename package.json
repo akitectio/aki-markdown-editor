@@ -1,0 +1,87 @@
+{
+    "name": "aki-markdown-editor",
+    "version": "1.0.0",
+    "description": "Modern and user-friendly markdown editor library built with Aki UI",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.esm.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "build:lib": "rollup -c",
+        "preview": "vite preview",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "test": "vitest",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build",
+        "prepare": "npm run build:lib"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "@akitectio/aki-ui": "latest",
+        "marked": "^9.1.6",
+        "highlight.js": "^11.9.0",
+        "dompurify": "^3.0.5",
+        "react-hook-form": "^7.48.0",
+        "@hookform/resolvers": "^3.3.0",
+        "zod": "^3.22.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.43",
+        "@types/react-dom": "^18.2.17",
+        "@types/marked": "^6.0.0",
+        "@types/dompurify": "^3.0.5",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
+        "@vitejs/plugin-react": "^4.2.1",
+        "eslint": "^8.55.0",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.5",
+        "typescript": "^5.2.2",
+        "vite": "^5.0.8",
+        "vite-plugin-dts": "^3.6.3",
+        "rollup": "^4.5.0",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "tailwindcss": "^3.3.6",
+        "postcss": "^8.4.32",
+        "autoprefixer": "^10.4.16",
+        "@storybook/addon-essentials": "^7.5.3",
+        "@storybook/addon-interactions": "^7.5.3",
+        "@storybook/addon-links": "^7.5.3",
+        "@storybook/blocks": "^7.5.3",
+        "@storybook/react": "^7.5.3",
+        "@storybook/react-vite": "^7.5.3",
+        "@storybook/testing-library": "^0.2.2",
+        "storybook": "^7.5.3",
+        "vitest": "^0.34.6",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/jest-dom": "^6.1.4"
+    },
+    "peerDependencies": {
+        "react": ">=18.0.0",
+        "react-dom": ">=18.0.0"
+    },
+    "keywords": [
+        "markdown",
+        "editor",
+        "react",
+        "typescript",
+        "aki-ui",
+        "component",
+        "library"
+    ],
+    "author": "Aki Ecosystem",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/akitectio/aki-markdown-editor.git"
+    }
+}
