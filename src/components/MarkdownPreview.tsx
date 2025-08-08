@@ -7,6 +7,12 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({
     className = '',
 }) => {
     const parseMarkdown = (markdown: string): string => {
+        // Ensure markdown is a string
+        if (typeof markdown !== 'string') {
+            console.error('parseMarkdown received non-string value:', markdown);
+            return '';
+        }
+
         // Basic markdown parsing (will be replaced with marked when deps are available)
         let html = markdown
             // Headers
@@ -50,7 +56,7 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({
         return html;
     };
 
-    const htmlContent = parseMarkdown(value);
+    const htmlContent = parseMarkdown(value || '');
 
     return (
         <Card className={`markdown-preview h-full overflow-auto ${className}`}>

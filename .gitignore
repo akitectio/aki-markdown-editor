@@ -130,6 +130,7 @@ dist
 dist/
 build/
 lib/
+!lib/aki-ui/
 *.d.ts
 *.d.ts.map
 

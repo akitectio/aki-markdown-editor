@@ -1,0 +1,3 @@
+[submodule "lib/aki-ui"]
+	path = lib/aki-ui
+	url = https://github.com/akitectio/aki-ui.git

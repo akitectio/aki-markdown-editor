@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MarkdownEditor, MarkdownPreview } from '../src';
+import MarkdownEditor from '../components/MarkdownEditor';
+import MarkdownPreview from '../components/MarkdownPreview';
 
 const EXAMPLE_MARKDOWN = `# Aki Markdown Editor Demo
 
@@ -130,8 +131,8 @@ const ExampleApp: React.FC = () => {
                     <button
                         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
                         className={`px-4 py-2 rounded-lg border ${theme === 'dark'
-                                ? 'bg-gray-800 text-white border-gray-600 hover:bg-gray-700'
-                                : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
+                            ? 'bg-gray-800 text-white border-gray-600 hover:bg-gray-700'
+                            : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
                             }`}
                     >
                         {theme === 'light' ? '🌙 Dark' : '☀️ Light'} Theme
@@ -140,8 +141,8 @@ const ExampleApp: React.FC = () => {
                     <button
                         onClick={() => setShowPreview(!showPreview)}
                         className={`px-4 py-2 rounded-lg border ${theme === 'dark'
-                                ? 'bg-gray-800 text-white border-gray-600 hover:bg-gray-700'
-                                : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
+                            ? 'bg-gray-800 text-white border-gray-600 hover:bg-gray-700'
+                            : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
                             }`}
                     >
                         {showPreview ? '📝 Editor Only' : '👁️ Show Preview'}
@@ -150,12 +151,12 @@ const ExampleApp: React.FC = () => {
                     <button
                         onClick={() => setAutoSave(!autoSave)}
                         className={`px-4 py-2 rounded-lg border ${autoSave
-                                ? theme === 'dark'
-                                    ? 'bg-green-800 text-white border-green-600'
-                                    : 'bg-green-100 text-green-900 border-green-300'
-                                : theme === 'dark'
-                                    ? 'bg-gray-800 text-white border-gray-600 hover:bg-gray-700'
-                                    : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
+                            ? theme === 'dark'
+                                ? 'bg-green-800 text-white border-green-600'
+                                : 'bg-green-100 text-green-900 border-green-300'
+                            : theme === 'dark'
+                                ? 'bg-gray-800 text-white border-gray-600 hover:bg-gray-700'
+                                : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
                             }`}
                     >
                         💾 Auto-save {autoSave ? 'ON' : 'OFF'}
@@ -164,8 +165,8 @@ const ExampleApp: React.FC = () => {
                     <button
                         onClick={handleExport}
                         className={`px-4 py-2 rounded-lg border ${theme === 'dark'
-                                ? 'bg-blue-800 text-white border-blue-600 hover:bg-blue-700'
-                                : 'bg-blue-100 text-blue-900 border-blue-300 hover:bg-blue-200'
+                            ? 'bg-blue-800 text-white border-blue-600 hover:bg-blue-700'
+                            : 'bg-blue-100 text-blue-900 border-blue-300 hover:bg-blue-200'
                             }`}
                     >
                         📥 Export MD
@@ -207,8 +208,8 @@ const ExampleApp: React.FC = () => {
                             Raw Markdown
                         </h2>
                         <pre className={`p-4 rounded-lg max-h-96 overflow-auto text-sm font-mono shadow-lg ${theme === 'dark'
-                                ? 'bg-gray-800 text-gray-200'
-                                : 'bg-gray-100 text-gray-800'
+                            ? 'bg-gray-800 text-gray-200'
+                            : 'bg-gray-100 text-gray-800'
                             }`}>
                             {content}
                         </pre>

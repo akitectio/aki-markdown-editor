@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup, Separator } from '@akitectio/aki-ui';
+import { Button } from '@akitectio/aki-ui';
 import { MarkdownToolbarProps, ToolbarAction } from '@/types';
 
 interface ToolbarButtonProps {
@@ -7,6 +7,7 @@ interface ToolbarButtonProps {
     onClick: (action: ToolbarAction) => void;
     disabled?: boolean;
     isActive?: boolean;
+    theme?: 'light' | 'dark';
 }
 
 const ToolbarButton: React.FC<ToolbarButtonProps> = ({
@@ -14,6 +15,7 @@ const ToolbarButton: React.FC<ToolbarButtonProps> = ({
     onClick,
     disabled = false,
     isActive = false,
+    theme = 'light',
 }) => {
     const getButtonContent = (action: ToolbarAction) => {
         switch (action) {
@@ -36,9 +38,9 @@ const ToolbarButton: React.FC<ToolbarButtonProps> = ({
             case 'heading3':
                 return { text: 'H3', title: 'Heading 3' };
             case 'unordered-list':
-                return { text: '• List', title: 'Bulleted List' };
+                return { text: '• UL', title: 'Bulleted List' };
             case 'ordered-list':
-                return { text: '1. List', title: 'Numbered List' };
+                return { text: '1. OL', title: 'Numbered List' };
             case 'quote':
                 return { text: '❝', title: 'Quote' };
             case 'horizontal-rule':
@@ -62,6 +64,12 @@ const ToolbarButton: React.FC<ToolbarButtonProps> = ({
 
     const { text, title } = getButtonContent(action);
 
+    // Determine button styling based on theme
+    const buttonClasses = `px-3 py-2 min-w-[40px] h-8 font-mono text-sm flex items-center justify-center transition-colors duration-200 ${theme === 'dark'
+            ? 'text-white hover:text-gray-200 hover:bg-gray-700'
+            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+        }`;
+
     return (
         <Button
             variant={isActive ? 'primary' : 'secondary'}
@@ -69,9 +77,11 @@ const ToolbarButton: React.FC<ToolbarButtonProps> = ({
             onClick={() => onClick(action)}
             disabled={disabled}
             title={title}
-            className="px-2 py-1 min-w-0 font-mono text-sm"
+            className={buttonClasses}
         >
-            {text}
+            <span className={`font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-700'}`}>
+                {text}
+            </span>
         </Button>
     );
 };
@@ -79,6 +89,7 @@ const ToolbarButton: React.FC<ToolbarButtonProps> = ({
 const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({
     onAction,
     disabled = false,
+    theme = 'light',
 }) => {
     const renderToolbarItems = () => {
         const groups: ToolbarAction[][] = [
@@ -91,24 +102,30 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({
 
         return groups.map((group, groupIndex) => (
             <React.Fragment key={groupIndex}>
-                <ButtonGroup>
+                <div className="flex items-center">
                     {group.map((action) => (
                         <ToolbarButton
                             key={action}
                             action={action}
                             onClick={onAction}
                             disabled={disabled}
+                            theme={theme}
                         />
                     ))}
-                </ButtonGroup>
-                {groupIndex < groups.length - 1 && <Separator orientation="vertical" className="h-6" />}
+                </div>
+                {groupIndex < groups.length - 1 && (
+                    <div className="separator h-6 w-px bg-gray-300 dark:bg-gray-600 mx-1" />
+                )}
             </React.Fragment>
         ));
     };
 
     return (
-        <div className="markdown-toolbar border-b border-gray-200 p-2 bg-gray-50">
-            <div className="flex items-center gap-2 flex-wrap">
+        <div className={`markdown-toolbar border-b p-3 ${theme === 'dark'
+            ? 'border-gray-700 bg-gray-800'
+            : 'border-gray-200 bg-gray-50'
+            }`}>
+            <div className="flex items-center gap-1 flex-wrap">
                 {renderToolbarItems()}
             </div>
         </div>

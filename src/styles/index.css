@@ -19,6 +19,45 @@
     @apply bg-gray-800 border-gray-700;
 }
 
+/* Toolbar button styles */
+.markdown-toolbar button {
+    @apply transition-colors duration-200;
+    min-width: 40px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.markdown-toolbar button:hover {
+    @apply shadow-sm;
+}
+
+/* Separator styles */
+.markdown-toolbar .separator {
+    width: 1px;
+    height: 24px;
+    margin: 0 4px;
+}
+
+/* Responsive toolbar */
+@media (max-width: 768px) {
+    .markdown-toolbar {
+        padding: 8px 12px;
+    }
+
+    .markdown-toolbar button {
+        min-width: 36px;
+        height: 28px;
+        font-size: 12px;
+    }
+
+    .markdown-toolbar .separator {
+        height: 20px;
+        margin: 0 2px;
+    }
+}
+
 .markdown-preview {
     @apply bg-white;
 }
@@ -29,8 +68,21 @@
 
 /* Textarea styles */
 .markdown-editor textarea {
-    @apply resize-none outline-none border-0 p-4 font-mono text-sm leading-relaxed;
+    @apply outline-none border-0 p-4 font-mono text-sm leading-relaxed;
     font-family: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace;
+    min-height: 200px; /* Đặt chiều cao tối thiểu */
+    resize: both; /* Enable resize in both directions */
+}
+
+/* Custom resize handle styling */
+.markdown-editor textarea::-webkit-resizer {
+    background: linear-gradient(-45deg, transparent 0%, transparent 50%, #cbd5e1 50%, #cbd5e1 100%);
+    background-size: 8px 8px;
+}
+
+.markdown-editor.dark textarea::-webkit-resizer {
+    background: linear-gradient(-45deg, transparent 0%, transparent 50%, #64748b 50%, #64748b 100%);
+    background-size: 8px 8px;
 }
 
 .markdown-editor.dark textarea {

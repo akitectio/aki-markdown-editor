@@ -18,6 +18,7 @@ export interface MarkdownEditorProps {
   syntaxHighlighting?: boolean;
   wordWrap?: boolean;
   lineNumbers?: boolean;
+  resizable?: boolean;
 }
 
 export interface ToolbarItem {
@@ -42,6 +43,7 @@ export interface MarkdownToolbarProps {
   onAction: (action: ToolbarAction, value?: string) => void;
   items?: ToolbarItem[];
   disabled?: boolean;
+  theme?: "light" | "dark";
 }
 
 export type ToolbarAction =

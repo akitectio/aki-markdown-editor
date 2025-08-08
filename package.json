@@ -12,18 +12,22 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
-        "build:lib": "rollup -c",
+        "build:lib": "npm run submodule:build && rollup -c",
         "preview": "vite preview",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "test": "vitest",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build",
-        "prepare": "npm run build:lib"
+        "prepare": "npm run build:lib",
+        "submodule:init": "git submodule update --init --recursive",
+        "submodule:update": "git submodule update --remote",
+        "submodule:build": "cd lib/aki-ui && npm install && npm run build",
+        "postinstall": "npm run submodule:init"
     },
     "dependencies": {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "@akitectio/aki-ui": "latest",
+        "@akitectio/aki-ui": "file:./lib/aki-ui",
         "marked": "^9.1.6",
         "highlight.js": "^11.9.0",
         "dompurify": "^3.0.5",

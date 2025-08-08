@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Card, Tabs, Button, Textarea } from '@akitectio/aki-ui';
 import { MarkdownEditorProps, ToolbarAction } from '@/types';
 import { useMarkdownEditor, useAutoSave, useKeyboardShortcuts } from '@/hooks';
@@ -21,6 +21,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
     autoSaveInterval = 30000,
     syntaxHighlighting = true,
     wordWrap = true,
+    resizable = true,
 }) => {
     const {
         state,
@@ -44,14 +45,19 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
         if (value !== undefined && value !== state.value) {
             updateValue(value, false);
         }
-    }, [value, state.value, updateValue]);
+    }, [value, updateValue]);
 
-    // Notify parent of changes
+    // Notify parent of changes only when state changes internally
+    const prevStateValueRef = useRef(state.value);
     useEffect(() => {
-        if (onChange && state.value !== (value || defaultValue)) {
-            onChange(state.value);
+        if (onChange && state.value !== prevStateValueRef.current) {
+            prevStateValueRef.current = state.value;
+            // Only call onChange if the change didn't come from external value prop
+            if (value === undefined || state.value !== value) {
+                onChange(state.value);
+            }
         }
-    }, [state.value, onChange, value, defaultValue]);
+    }, [state.value, onChange, value]);
 
     const handleTextareaChange = useCallback((newValue: string) => {
         updateValue(newValue);
@@ -242,6 +248,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
                     <MarkdownToolbar
                         onAction={applyMarkdownAction}
                         disabled={readOnly}
+                        theme={theme}
                     />
                 )}
 
@@ -282,7 +289,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
                                         onChange={handleTextareaChange}
                                         placeholder={placeholder}
                                         disabled={readOnly}
-                                        className={`w-full h-full resize-none border-0 focus:outline-none ${wordWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'
+                                        className={`w-full h-full ${resizable ? 'resize-both' : 'resize-none'} border-0 focus:outline-none ${wordWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'
                                             } font-mono text-sm`}
                                         style={{ height: height }}
                                         onSelect={updateCursorPosition}
@@ -305,7 +312,7 @@ const MarkdownEditor: React.FC<MarkdownEditorProps> = ({
                             onChange={handleTextareaChange}
                             placeholder={placeholder}
                             disabled={readOnly}
-                            className={`w-full h-full resize-none border-0 focus:outline-none ${wordWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'
+                            className={`w-full h-full ${resizable ? 'resize-both' : 'resize-none'} border-0 focus:outline-none ${wordWrap ? 'whitespace-pre-wrap' : 'whitespace-pre'
                                 } font-mono text-sm`}
                             style={{ height: height }}
                             onSelect={updateCursorPosition}
